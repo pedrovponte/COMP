@@ -1,0 +1,60 @@
+do {
+  lastChar = readInput()
+  lastCharToken = lastChar.getToken()
+
+  switch(lastCharToken) {
+	case LPAR:
+		print(lastCharToken)
+		break;
+	case RPAR:
+		print(lastCharToken)
+		break;
+	case MUL:
+		print(lastCharToken)
+		break;
+	case DIV:
+		print(lastCharToken)
+		break;
+	case PLUS:
+		print(lastCharToken)
+		break;
+	case INT:
+		print(lastCharToken)
+		break;
+	case VAR:
+		print(lastCharToken)
+		break;
+	case EQ:
+		print(lastCharToken)
+		break;
+	case SMICOLON:
+		print(lastCharToken)
+		break;
+	case "\n":
+		print("Skip \n")
+		break;
+	case "\r":
+		print("Skip \r")
+		break;
+	case " ":
+		print("Skip ")
+		break;
+	case "\t":
+		print("Skip \t")
+		break;
+	case default:
+		print("Not a valid")
+		return -1;
+  }
+ 
+} while (lastChar != EOF)
+
+---------------------------------------------------
+
+tokens = [LPAR, RPAR, MUL, DIV, PLUS, INT, VAR, EQ, SMICOLON, \n, \r, \s, \t]
+
+while (token = input().get_token()) != EOF:
+  print(token)  
+  if token not in tokens:
+    print("Error")
+    return -1
