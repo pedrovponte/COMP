@@ -3,41 +3,30 @@
 **Q3**
 
 ```
-\/\*[a-zA-Z0-9\/\*\n]*?\*\/
+\/\*[a-zA-Z0-9\/\*\n \t\r]*?\*\/
 ```
 
 **Q4**
 
 ```
-"/*" (["a"-"z","A"-"Z","0"-"9","\n","/"])* "*" (["a"-"z","A"-"Z","0"-"9","\n","*"] (["a"-"z","A"-"Z","0"-"9","\n","/"])* "*")* "/"
-```
-
-ou
-
-```
-< SYMBOL: ["a"-"z","A"-"Z","0"-"9","\n"] >
-< MULTILINECOMMENT:  "/*" (SYMBOL | "/")* "*" ((SYMBOL | "*") (SYMBOL | "/")* "*")* "/">
+< "/*" (["a"-"z","A"-"Z","0"-"9", "\n", "\r", "\t", " "] | "/")* "*" ((["a"-"z","A"-"Z","0"-"9", "\n", "\r", "\t", " "] | "*") (["a"-"z","A"-"Z","0"-"9", "\n", "\r", "\t", " "] | "/")* "*")* "/">
 ```
 
 **Q5** 
 
-k = 2
+No value
 
 **Q6** 
 
-In Statement, there is many choice points with the same prefix (IDENTIFIER). In this, it's necessary to see the next symbol in order to make the choice.
-For example:
-    Expression , ";"
-    | Identifier , "=" , Expression , ";"
-    | Identifier , "[" , Expression , "]" , "=" , Expression , ";"
+Since Expression generates left recursion, it can have infinite in size, which implies that there is no concrete value for the lookahead in the Statement. It would be necessary to eliminate recursion in Expression and only then would we be able to have a concrete value for the observation site.
 
 **Q7**
 
-k = 2
+k = 1
 
 **Q8**
 
-In Type, there are 2 choice points with the same prefix(int and int[]). In this case, it's necessary to see the next symbol. 
+In Type, although there are 2 choice points with the same prefix(int and int[]), in this cases, to diferenciate the next symbol we only need to do this: int ([])?
 
 **Q10**
 
@@ -49,4 +38,4 @@ In Type, there are 2 choice points with the same prefix(int and int[]). In this 
 
 1. Verify for binary expression * if both operands are integers;
 2. Verify, for DotExpression with .length, if the prefix has access to parameter length. The prefix has to be an array or an object of a class with this parameter.
-3. Verify if the indice to access an array is an integer. 
+3. Verify if the indice to access an array is an integer.
