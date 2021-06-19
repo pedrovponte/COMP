@@ -1,0 +1,104 @@
+import MathUtils; //lowerLimit,upperLimit
+import ioPlus;
+import io.println;
+
+ /* This test tests the compiler's capability of generating
+      * if/else and while statements using complex expressions
+      */
+class optimizationAlg {
+    public int max(int a, int b){
+        int temp;
+        if(a<b){
+            temp=b;
+        }
+        else{
+            temp=a;
+        }
+        return temp;
+    }
+
+    public int smallStatementTest(){
+            int x;
+            int y;
+            int i;
+            i = 0;
+            x = 10;
+            while(i< 20){
+                if ((i * 3)  < 7) {
+                    if (!(i + 8 < 10)) {
+                        x = 2;
+                        if (true) {
+                            x = 3;
+                        }
+                        else {}
+                    }
+                    else {}
+                }
+                else {
+                    while(!(x < 5)){
+                        x = x- 1;
+                    }
+                }
+                i = i+1;
+            }
+            y = x+3;
+            io.println(y);
+            return 0;
+         }
+
+    public int knapSack(int W, int[] wt, int[] val, int n){
+        int ret;
+        int i;
+        int j;
+        int k;
+        if(n<1){
+        ret = 0;
+        }
+        else{
+            if(W<1){
+            ret=0;
+            }
+            else{}
+
+            if(W<wt[n-1]){
+                ret= this.knapSack(W,wt,val,n-1);
+            }
+            else{
+                i = val[n-1];
+                j = this.knapSack(wt[n-1],wt,val,n-1);
+                k = this.knapSack(W,wt,val,n-1);
+                ret= this.max(i + j, k);
+            }
+        }
+        return ret;
+    }
+
+
+
+
+	public static void main(String[] args) {
+
+	    //KNAPSACK:
+		int[] val;
+		val = new int[3];
+		int i;
+		int n;
+		val[0]=60;
+		val[1]=100;
+        val[2]=120;
+        int[] wt;
+        wt = new int[3];
+        wt[0]=10;
+        wt[1]=20;
+        wt[2]=30;
+        int W;
+        W=50;
+        n= val.length / val[0];
+        optimizationAlg opt;
+        opt = new optimizationAlg();
+		ioPlus.printResult(opt.knapSack(W,wt,val,n));
+
+		int k;
+        k=opt.smallStatementTest();
+	}
+}
